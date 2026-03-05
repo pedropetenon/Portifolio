@@ -1,9 +1,41 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { useState } from "react";
 
 export default function ContactPage() {
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [isSuccess, setIsSuccess] = useState(false);
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        setIsSubmitting(true);
+
+        const form = e.currentTarget;
+        const formData = new FormData(form);
+
+        try {
+            const response = await fetch("https://formspree.io/f/mbdzranp", {
+                method: "POST",
+                body: formData,
+                headers: {
+                    Accept: "application/json",
+                },
+            });
+
+            if (response.ok) {
+                setIsSuccess(true);
+                form.reset();
+            } else {
+                console.error("Form submission failed");
+            }
+        } catch (error) {
+            console.error("Form submission error", error);
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
     return (
         <main className="flex min-h-screen w-full flex-col items-start justify-start pt-32 pb-24 px-6 md:px-12 bg-neutral-950 text-neutral-100 overflow-hidden">
 
@@ -148,6 +180,7 @@ export default function ContactPage() {
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.9, ease: [0.16, 1, 0.3, 1] }}
+                        onSubmit={handleSubmit}
                         className="flex flex-col gap-12 w-full"
                     >
                         <div className="flex flex-col gap-2 relative group">
@@ -189,11 +222,16 @@ export default function ContactPage() {
                         <div className="mt-8">
                             <button
                                 type="submit"
-                                className="group relative inline-flex items-center justify-center bg-white text-black px-8 py-6 text-xl md:text-2xl font-bold uppercase tracking-widest overflow-hidden transition-all duration-500 hover:bg-neutral-200"
+                                disabled={isSubmitting || isSuccess}
+                                className="group relative inline-flex items-center justify-center bg-white text-black px-8 py-6 text-xl md:text-2xl font-bold uppercase tracking-widest overflow-hidden transition-all duration-500 hover:bg-neutral-200 disabled:opacity-50 disabled:cursor-not-allowed"
                             >
                                 <span className="relative z-10 flex items-center gap-4">
-                                    Send Message
-                                    <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform duration-300" />
+                                    {isSubmitting ? "Transmitting..." : isSuccess ? "Message Received" : "Send Message"}
+                                    {isSuccess ? (
+                                        <CheckCircle2 className="w-6 h-6 text-green-600" />
+                                    ) : (
+                                        <ArrowRight className={`w-6 h-6 transition-transform duration-300 ${isSubmitting ? "" : "group-hover:translate-x-2"}`} />
+                                    )}
                                 </span>
                             </button>
                         </div>
