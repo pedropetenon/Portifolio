@@ -234,8 +234,7 @@ export default function AboutPage() {
                         transition={{ duration: 0.8, delay: 1.3, ease: [0.16, 1, 0.3, 1] }}
                         className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tighter leading-[1.1] text-neutral-300 border-l-4 border-white pl-6 md:pl-10 py-2 relative"
                     >
-                        <span className="text-neutral-500 absolute -top-10 left-6 text-6xl">&quot;</span>
-                        The definition of insanity is doing the same thing over and over again and expecting a different result.
+                        <span className="text-neutral-600">&quot;</span>The definition of insanity is doing the same thing over and over again and expecting a different result.<span className="text-neutral-600">&quot;</span>
                         <footer className="mt-8 text-sm font-mono text-neutral-500 tracking-widest uppercase">— Albert Einstein</footer>
                     </motion.blockquote>
 
