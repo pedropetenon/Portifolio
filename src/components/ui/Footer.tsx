@@ -18,50 +18,27 @@ export default function Footer() {
     ];
 
     return (
-        <footer className="fixed bottom-0 z-50 flex w-full flex-col sm:flex-row items-start sm:items-center justify-between p-6 text-sm font-medium tracking-tight mix-blend-difference text-white gap-6 pointer-events-none">
+        <>
+            <footer className="fixed bottom-0 z-50 flex w-full flex-col sm:flex-row items-start sm:items-center justify-between p-6 text-sm font-medium tracking-tight mix-blend-difference text-white gap-6 pointer-events-none">
 
-            {/* Desktop Socials */}
-            <div className="hidden sm:flex flex-wrap items-center gap-x-8 gap-y-4 pointer-events-auto">
-                {socials.map((social) => (
-                    <MagneticWrapper key={social.name}>
-                        <a
-                            href={social.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="hover:opacity-75 transition-opacity"
-                        >
-                            {social.name}
-                        </a>
-                    </MagneticWrapper>
-                ))}
-            </div>
+                {/* Desktop Socials */}
+                <div className="hidden sm:flex flex-wrap items-center gap-x-8 gap-y-4 pointer-events-auto">
+                    {socials.map((social) => (
+                        <MagneticWrapper key={social.name}>
+                            <a
+                                href={social.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="hover:opacity-75 transition-opacity"
+                            >
+                                {social.name}
+                            </a>
+                        </MagneticWrapper>
+                    ))}
+                </div>
 
-            {/* Mobile Socials Toggle */}
-            <div className="flex flex-col sm:hidden pointer-events-auto w-full">
-                <AnimatePresence>
-                    {isSocialOpen && (
-                        <motion.div
-                            initial={{ height: 0, opacity: 0 }}
-                            animate={{ height: "auto", opacity: 1 }}
-                            exit={{ height: 0, opacity: 0 }}
-                            className="flex flex-col gap-4 overflow-hidden mb-6"
-                        >
-                            {socials.map((social) => (
-                                <a
-                                    key={social.name}
-                                    href={social.url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="text-2xl font-bold tracking-tighter uppercase hover:opacity-75 transition-opacity"
-                                >
-                                    {social.name}
-                                </a>
-                            ))}
-                        </motion.div>
-                    )}
-                </AnimatePresence>
-
-                <div className="flex justify-between items-center w-full">
+                {/* Mobile Socials Toggle */}
+                <div className="flex sm:hidden pointer-events-auto w-full justify-between items-center">
                     <button
                         onClick={() => setIsSocialOpen(!isSocialOpen)}
                         className="hover:opacity-75 uppercase tracking-widest text-xs font-bold"
@@ -78,19 +55,48 @@ export default function Footer() {
                         </a>
                     </MagneticWrapper>
                 </div>
-            </div>
 
-            {/* Desktop Email */}
-            <div className="hidden sm:block pointer-events-auto">
-                <MagneticWrapper>
-                    <a
-                        href="mailto:pedrogpetenon@gmail.com"
-                        className="hover:opacity-75 transition-opacity block"
+                {/* Desktop Email */}
+                <div className="hidden sm:block pointer-events-auto">
+                    <MagneticWrapper>
+                        <a
+                            href="mailto:pedrogpetenon@gmail.com"
+                            className="hover:opacity-75 transition-opacity block"
+                        >
+                            pedrogpetenon@gmail.com
+                        </a>
+                    </MagneticWrapper>
+                </div>
+            </footer>
+
+            {/* Mobile Socials Overlay */}
+            <AnimatePresence>
+                {isSocialOpen && (
+                    <motion.div
+                        initial={{ y: "100%" }}
+                        animate={{ y: "0%" }}
+                        exit={{ y: "100%" }}
+                        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                        className="fixed bottom-0 left-0 w-full bg-neutral-950 text-white z-40 flex flex-col pt-12 px-6 pb-24 sm:hidden border-t border-neutral-800 pointer-events-auto shadow-2xl"
                     >
-                        pedrogpetenon@gmail.com
-                    </a>
-                </MagneticWrapper>
-            </div>
-        </footer>
+                        <h2 className="text-xs font-mono text-neutral-500 uppercase tracking-widest mb-6 px-2">Socials</h2>
+                        <div className="flex flex-col gap-4">
+                            {socials.map((social) => (
+                                <a
+                                    key={social.name}
+                                    href={social.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-3xl font-bold tracking-tighter uppercase px-2 hover:opacity-75 transition-colors"
+                                    onClick={() => setIsSocialOpen(false)}
+                                >
+                                    {social.name}
+                                </a>
+                            ))}
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </>
     );
 }
