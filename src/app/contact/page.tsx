@@ -190,7 +190,7 @@ export default function ContactPage() {
                                 id="name"
                                 name="name"
                                 placeholder="John Doe"
-                                className="w-full bg-transparent border-b-2 border-neutral-800 py-4 text-2xl md:text-4xl font-bold tracking-tighter text-white placeholder-neutral-700 outline-none focus:border-white transition-colors rounded-none"
+                                className="w-full min-h-[44px] bg-transparent border-b-2 border-neutral-800 py-4 text-2xl md:text-4xl font-bold tracking-tighter text-white placeholder-neutral-700 outline-none focus:border-white transition-colors rounded-none"
                                 required
                             />
                         </div>
@@ -202,7 +202,7 @@ export default function ContactPage() {
                                 id="email"
                                 name="email"
                                 placeholder="john@example.com"
-                                className="w-full bg-transparent border-b-2 border-neutral-800 py-4 text-2xl md:text-4xl font-bold tracking-tighter text-white placeholder-neutral-700 outline-none focus:border-white transition-colors rounded-none"
+                                className="w-full min-h-[44px] bg-transparent border-b-2 border-neutral-800 py-4 text-2xl md:text-4xl font-bold tracking-tighter text-white placeholder-neutral-700 outline-none focus:border-white transition-colors rounded-none"
                                 required
                             />
                         </div>
@@ -214,7 +214,7 @@ export default function ContactPage() {
                                 name="message"
                                 rows={4}
                                 placeholder="Let&apos;s build something brutal..."
-                                className="w-full bg-transparent border-b-2 border-neutral-800 py-4 text-2xl md:text-3xl font-medium tracking-tight text-white placeholder-neutral-700 outline-none focus:border-white transition-colors resize-none rounded-none"
+                                className="w-full min-h-[44px] bg-transparent border-b-2 border-neutral-800 py-4 text-2xl md:text-3xl font-medium tracking-tight text-white placeholder-neutral-700 outline-none focus:border-white transition-colors resize-none rounded-none"
                                 required
                             ></textarea>
                         </div>
@@ -223,7 +223,7 @@ export default function ContactPage() {
                             <button
                                 type="submit"
                                 disabled={isSubmitting || isSuccess}
-                                className="group relative inline-flex items-center justify-center bg-white text-black px-8 py-6 text-xl md:text-2xl font-bold uppercase tracking-widest overflow-hidden transition-all duration-500 hover:bg-neutral-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="group relative inline-flex min-h-[48px] items-center justify-center bg-white text-black px-8 py-6 text-xl md:text-2xl font-bold uppercase tracking-widest overflow-hidden transition-all duration-500 hover:bg-neutral-200 disabled:opacity-50 disabled:cursor-not-allowed"
                             >
                                 <span className="relative z-10 flex items-center gap-4">
                                     {isSubmitting ? "Transmitting..." : isSuccess ? "Message Received" : "Send Message"}

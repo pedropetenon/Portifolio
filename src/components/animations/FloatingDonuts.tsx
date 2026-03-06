@@ -2,6 +2,7 @@
 
 import { useRef, useState, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
+import { useReducedMotion } from "framer-motion";
 import * as THREE from "three";
 
 function Donut({ initialPosition, color, initialVelocity }: { initialPosition: [number, number, number], color: string, initialVelocity: [number, number, number] }) {
@@ -96,6 +97,8 @@ function Donut({ initialPosition, color, initialVelocity }: { initialPosition: [
 }
 
 export default function FloatingDonuts() {
+    const shouldReduceMotion = useReducedMotion();
+
     // Ensuring the event source captures global HTML body mouse movements despite z-index
     const [eventSource, setEventSource] = useState<HTMLElement | null>(null);
 
@@ -122,6 +125,10 @@ export default function FloatingDonuts() {
             return { id: i, position: [x, y, z] as [number, number, number], velocity: [vx, vy, vz] as [number, number, number], color };
         });
     });
+
+    if (shouldReduceMotion) {
+        return null;
+    }
 
     return (
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
