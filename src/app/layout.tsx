@@ -41,9 +41,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="overflow-x-hidden max-md:overflow-hidden max-md:overscroll-none">
+    <html lang="en" className="overflow-x-hidden">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased relative overflow-x-hidden max-md:overflow-hidden max-md:overscroll-none max-md:h-[100dvh] bg-neutral-950 text-neutral-100 flex flex-col min-h-screen`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased relative overflow-x-hidden bg-neutral-950 text-neutral-100 flex flex-col min-h-screen`}
       >
         <CustomCursor />
         <Header />

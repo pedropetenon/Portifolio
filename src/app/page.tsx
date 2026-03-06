@@ -5,7 +5,7 @@ import FloatingDonuts from "@/components/animations/FloatingDonuts";
 
 export default function Home() {
   return (
-    <main className="flex h-full min-h-screen flex-col items-center justify-center px-6 bg-neutral-950 text-neutral-100 overflow-hidden relative">
+    <main className="flex max-md:h-[100dvh] min-h-screen flex-col items-center justify-center px-6 bg-neutral-950 text-neutral-100 overflow-hidden relative max-md:overscroll-none">
       <FloatingDonuts />
 
       <div className="flex flex-col items-center justify-center relative z-10 w-full max-w-3xl text-center pointer-events-none">
